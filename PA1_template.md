@@ -1,8 +1,8 @@
 # Reproducible Research: Peer Assessment 1
 Kevin Michael Rhodes  
-November 15, 2014  
+December 14, 2014  
 #Introduction
-This document provides the code and documentation necessary to reproduce an analysis of motion data for peer assessment #1 from the Coursera course on Reproducible Research <https://www.coursera.org/course/repdata>.
+This document provides the code and documentation necessary to reproduce an analysis of motion data for peer assessment #1 from the Coursera course on [Reproducible Research][1].
 
 
 
@@ -35,7 +35,9 @@ steps_by_date <- aggregate(steps ~ date, data = activity_table, sum, na.rm = TRU
 
 ```r
 #histogram
-ggplot(steps_by_date, aes(x=steps)) + geom_histogram(binwidth=2500, colour="black", fill="white") + ggtitle("Steps taken per day")
+ggplot(steps_by_date, aes(x=steps)) +
+    geom_histogram(binwidth=2500, colour="black", fill="white") +
+    ggtitle("Steps taken per day")
 ```
 
 ![](./PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
@@ -121,7 +123,7 @@ With missing values filled in, the mean total number of steps taken each day is 
 These values virtually identical to the earlier estimates. The mean is the same, since we simply imputed the mean; the median is slightly changed.
 
 *What is the impact of imputing missing data on the estimates of the total daily number of steps?*
-There seems to be very little impact of imputing data in this way on the averages. However, it would increase the total daily number of steps.
+While there is little impact of imputing data using this method on the averages, this method *does* increases the total daily number of steps.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -145,7 +147,14 @@ imputed_steps_by_interval_table <- aggregate(steps ~ interval + dayType, data = 
 
 
 ```r
-ggplot(imputed_steps_by_interval_table, aes(x=interval, y=steps)) + xlab("5-minute interval") + ylab("Mean number of steps taken, across all days") + geom_line() + facet_grid(dayType ~ .) + ggtitle("Steps per interval, by weekday/weekend day")
+ggplot(imputed_steps_by_interval_table, aes(x=interval, y=steps)) +
+    xlab("5-minute interval") +
+    ylab("Mean number of steps taken, across all days") +
+    geom_line() + facet_grid(dayType ~ .) +
+    ggtitle("Steps per interval, by weekday/weekend day")
 ```
 
 ![](./PA1_template_files/figure-html/unnamed-chunk-14-1.png) 
+
+---
+[1]:https://www.coursera.org/course/repdata
